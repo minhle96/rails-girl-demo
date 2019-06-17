@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :products do
     get :cms, on: :collection
   end
+
+  resources :product_items, only: [:create]
 end

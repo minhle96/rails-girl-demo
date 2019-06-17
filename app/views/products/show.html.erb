@@ -10,20 +10,23 @@
         <h2 class="text-black"><%= @product.name %></h2>
         <p><%= @product.description %></p>
         <p><strong class="text-primary h4">$<%= @product.price %></strong></p>
-        <div class="mb-5">
-          <div class="input-group mb-3" style="max-width: 120px;">
-            <div class="input-group-prepend">
-              <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-            </div>
-            <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-            <div class="input-group-append">
-              <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+        <%= form_with(model: ProductItem.new, local: true) do |form| %>
+          <input type="text" name="product_id"
+                 value="<%= @product.id %>"
+                 style="display: none"/>
+          <div class="mb-5">
+            <div class="input-group mb-3" style="max-width: 120px;">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+              </div>
+              <input type="text" name="quantity" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+              </div>
             </div>
           </div>
-
-        </div>
-        <p><a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
-
+          <%= form.submit "Add To Cart", class: "buy-now btn btn-sm height-auto px-4 py-3 btn-primary" %>
+        <% end %>
       </div>
     </div>
   </div>
