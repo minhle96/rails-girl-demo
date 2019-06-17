@@ -1,0 +1,10 @@
+<div class="products-wrap border-top-0">
+  <div class="container-fluid">
+    <%= link_to("New Product", new_product_path, class: "btn btn-primary rounded-0") %>
+    <div class="row no-gutters products">
+      <% @products.each do |product| %>
+        <%= render 'product_cms', product: product %>
+      <% end %>
+    </div>
+  </div>
+</div>
