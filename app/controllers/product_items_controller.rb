@@ -1,4 +1,5 @@
 class ProductItemsController < ApplicationController
+  before_action :get_item, only: [:add_quantity, :reduce_quantity]
 
   def create
     chosen_product = Product.find(params[:product_id])
@@ -14,18 +15,16 @@ class ProductItemsController < ApplicationController
   end
 
   def add_quantity
-    @product_item = ProductItem.find(params[:id])
     @product_item.quantity += 1
     @product_item.save
-    redirect_back(fallback_location: @current_cart)
+    redirect_to cart_path(@current_cart)
   end
 
   def reduce_quantity
-    @product_item = ProductItem.find(params[:id])
     if @product_item.quantity > 1
       @product_item.quantity -= 1
       @product_item.save
-      redirect_back(fallback_location: @current_cart)
+      redirect_to cart_path(@current_cart)
     elsif @product_item.quantity == 1
       destroy
     end
@@ -51,5 +50,9 @@ class ProductItemsController < ApplicationController
       @product_item.product = chosen_product
       @product_item.quantity = quantity
     end
+  end
+
+  def get_item
+    @product_item = ProductItem.find(params[:id])
   end
 end
