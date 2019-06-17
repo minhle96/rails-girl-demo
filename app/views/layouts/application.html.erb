@@ -48,7 +48,7 @@
         <div class="icons">
           <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
           <a href="#" class="icons-btn d-inline-block"><span class="icon-heart-o"></span></a>
-          <a href="cart.html" class="icons-btn d-inline-block bag">
+          <a href="<%= cart_path(@current_cart) %>" class="icons-btn d-inline-block bag">
             <span class="icon-shopping-bag"></span>
             <% if @current_cart.total_quantity > 0 %>
               <span class="number"><%= @current_cart.total_quantity %></span>

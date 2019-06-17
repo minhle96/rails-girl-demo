@@ -13,6 +13,14 @@ class ProductItemsController < ApplicationController
     end
   end
 
+  def delete; end
+
+  def destroy
+    item = ProductItem.find(params[:id])
+    item.destroy
+    redirect_to cart_path(@current_cart)
+  end
+
   private
 
   def add_items_to_cart(chosen_product, quantity = 1)

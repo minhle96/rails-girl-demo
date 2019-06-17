@@ -144,7 +144,8 @@ jQuery(document).ready(function($) {
 		});
 		$('.js-btn-plus').on('click', function(e){
 			e.preventDefault();
-			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+			let quantity = $(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+			$('.item-total-price').val(quantity * $('.item-total-price').val())
 		});
 	};
 	sitePlusMinus();

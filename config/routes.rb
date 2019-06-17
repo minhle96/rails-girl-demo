@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     get :cms, on: :collection
   end
 
-  resources :product_items, only: [:create]
+  resources :product_items, only: [:create, :delete, :destroy]
+  resources :carts, only: [:show, :destroy]
 end
