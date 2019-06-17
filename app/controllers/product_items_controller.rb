@@ -13,6 +13,24 @@ class ProductItemsController < ApplicationController
     end
   end
 
+  def add_quantity
+    @product_item = ProductItem.find(params[:id])
+    @product_item.quantity += 1
+    @product_item.save
+    redirect_back(fallback_location: @current_cart)
+  end
+
+  def reduce_quantity
+    @product_item = ProductItem.find(params[:id])
+    if @product_item.quantity > 1
+      @product_item.quantity -= 1
+      @product_item.save
+      redirect_back(fallback_location: @current_cart)
+    elsif @product_item.quantity == 1
+      destroy
+    end
+  end
+
   def delete; end
 
   def destroy
